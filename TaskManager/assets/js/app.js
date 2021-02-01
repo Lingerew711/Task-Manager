@@ -19,6 +19,18 @@ taskList.addEventListener('click', removeTask);
 // Event Listener for reload 
 reloadIcon.addEventListener('click', reloadPage);
 
+$(document).ready(function(){
+    $("#dropdownbtn").click(function(){
+        $("#dropdown").slideToggle()
+    })
+ })
+ 
+ 
+ 
+ asc.addEventListener("click", sortAsc)
+ dsc.addEventListener("click", sortDsc)
+ 
+
 function deleteMessage() {
     message.style.display = "none";
 }
@@ -32,25 +44,14 @@ function addNewTask(e){
         return;
         
     }
-    deleteMessage();
-    // Create an li element when the user adds a task 
-    const li = document.createElement('li');
-    // Adding a class
-    li.className = 'collection-item';
-    // Create text node and append it 
-    li.appendChild(document.createTextNode(taskInput.value));
-    // Create new element for the link 
-    const link = document.createElement('a');
-    // Add class and the x marker for a 
-    link.className = 'delete-item secondary-content';
-    link.innerHTML = '<i class="fa fa-remove"></i>';
-    // Append link to li
-    li.appendChild(link);
-    // Append to ul 
-    taskList.appendChild(li);
+    
+    const nowDate = new Date();
+    const nowDateString = " " + nowDate.getHours() + ":" + nowDate.getMinutes() + ":" + nowDate.getSeconds() + ":" + nowDate.getMilliseconds()
+
+    createTaskElement(taskInput.value, nowDateString)
+    sortAsc()
     taskInput.value = ""; //clearing the input
     deleteMessage();
-
 }
 
  
@@ -63,6 +64,71 @@ function clearAllTasks(){
 }
 
 }
+function sortAsc() {
+    const allTasks = document.querySelectorAll('.collection-item')
+    const allContents = []
+    allTasks.forEach(function (task) {
+        let content = {
+            task: task.childNodes[0].textContent,
+            date: task.childNodes[2].textContent
+        }
+
+        allContents.push(content)
+    })
+
+    const sortedContent = allContents.sort((a, b) => (a.date > b.date) ? 1 : -1)
+
+
+    document.querySelector('.collection').innerHTML = ''
+    sortedContent.forEach(function (task) {
+        createTaskElement(task.task, task.date)
+    })
+}
+
+function sortDsc() {
+    const allTasks = document.querySelectorAll('.collection-item')
+    const allContents = []
+    allTasks.forEach(function (task) {
+        let content = {
+            task: task.childNodes[0].textContent,
+            date: task.childNodes[2].textContent
+        }
+
+        allContents.push(content)
+    })
+
+    const sortedContent = allContents.reverse((a, b) => (a.date > b.date) ? 1 : -1)
+
+
+    document.querySelector('.collection').innerHTML = ''
+    sortedContent.forEach(function (task) {
+        createTaskElement(task.task, task.date)
+    })
+}
+
+function createTaskElement(task, date) {
+    const li = document.createElement("li");
+    // Adding a class
+    li.className = "collection-item";
+    // Create text node and append it
+    const p = document.createElement("span")
+    p.innerHTML = task
+    li.appendChild(p);
+    // Create new element for the link
+    const link = document.createElement("a");
+    // Add class and the x marker for a
+    link.className = "delete-item secondary-content";
+    link.innerHTML = '<i class="fa fa-remove"></i>';
+    // Append link to li
+    li.appendChild(link);
+    // Append to UL
+    taskList.appendChild(li);
+    const addDate = document.createElement("em")
+    addDate.className = "align-right"
+    // addDate.innerHTML = date
+    li.appendChild(addDate)
+}
+
 function filterTasks(e){
     /*  
       Instruction for Handling the Search/filter 
@@ -98,8 +164,7 @@ function removeTask(e) {
         {
             e.target.parentElement.parentElement.remove();
          }
-
-    }
+       }
 
 }
 // Reload Page Function 
