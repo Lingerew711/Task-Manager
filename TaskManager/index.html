@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Materialize Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-    <!-- Font Owesome Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
-    <!-- Custom Css -->
-    <link rel="stylesheet" href="assets/css/style.css" />
-
-    <link rel="shortcut icon" type="image/svg" href="assets/img/tasks-solid.svg" />
-    <title>Task List App</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Materialize Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <!-- Font awesome Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <!-- Custom Css -->
+        <link rel="stylesheet" href="assets/css/style.css">
+    
+        <link rel="shortcut icon" type="image/svg" href="assets/images/tasks-solid.svg" />
+        <title>Task List App</title>
+    </head>
 
 <body>
     <!-- Navigation  -->
@@ -54,17 +54,15 @@
                
                 <div class="card-action">
                    
-                    <div class="ddb">
-                        <a class='dropdown-trigger btn' id="dropdownbtn">Order Tasks!</a>
-                    <!-- Dropdown Structure -->
-                    <ul id='dropdown' style="display: none;">
-                        <li>
-                            <button class="btn black" id="asc">ASC</button>
-                            <button class="btn red" id="dsc">DSC</button>
-                        </li>
-                    </ul>
-                    </div>
                     <h5 id="task-title">List of Tasks</h5>
+                    <!-- Dropdown Trigger -->
+                    <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Order Tasks</a>
+
+                    <!-- Dropdown Structure -->
+                    <ul id='dropdown1' class='dropdown-content'>
+                        <li id="asc"><p>ASC</p></li>
+                        <li id="dsc"><p>DESC</p></li>
+                    </ul>
                     <div class="input-field col s12">
                         <input type="search" name="filter" id="filter" />
                         <label for="filter">Search</label>
@@ -85,6 +83,7 @@
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <!-- Materialize Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
     <!-- Our Own Js  -->
     <script src="assets/js/storage.js"></script>
     <script src="assets/js/app.js"></script>
